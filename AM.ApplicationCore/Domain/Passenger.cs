@@ -8,35 +8,48 @@ namespace AM.ApplicationCore.Domain
 {
     public class Passenger
     {
-        public String PassportNumber { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public string TelNumber { get; set; }
         public DateTime BirthDate { get; set; }
-        public IList<Flight> flights { get; set; }
+        public string Passportnumber { get; set; }
+        public string Emailadress { get; set; }
+            
+        public string FirstName { get; set; }
+        
+        public string LastName { get; set; }
+        public  int Telnumber { get; set; }
 
-     
-        public bool CheckProfile(string firstname, string lastename, string email=null )
-        {
+        public List<Flight> Flights { get; set; }
 
-                return firstname == FirstName && lastename == LastName && (email == EmailAddress|| email==null);
-        }
-        public virtual void PassengerType() { Console.WriteLine("I m a ppassener"); }
-        public Passenger(String id, string nom, string prenom, string email, string num, DateTime dateNaissance)
+        public override string? ToString()
         {
-            PassportNumber = id;
-            FirstName = nom;
-            LastName = prenom;
-            EmailAddress = email;
-            TelNumber = num;
-            BirthDate = dateNaissance;
+            return FirstName + LastName ;
         }
 
-        public Passenger() { }
-        public override string ToString()
+
+        //public bool CheckProfile(string nom , string prenom)
+        //{
+        //    return (nom==FirstName && prenom==LastName);
+        //}
+        //public bool CheckProfile(string nom, string prenom,string email)
+        //{
+        //    return (nom == FirstName && prenom == LastName && email==Emailadress);
+
+        //}
+        public bool Checkprofile(string nom, string prenom, string email=null)
         {
-            return $"BirthDate: {BirthDate}, PassportNumber: {PassportNumber}, EmailAddress: {EmailAddress}, FirstName: {FirstName}, LastName: {LastName}, TelNumber: {TelNumber}";
+            if (email == null)
+            {
+              return (nom == FirstName && prenom == LastName);
+
+            }
+            else
+                return (nom == FirstName && prenom == LastName && email == Emailadress);
         }
+
+        public virtual void  PassengerType()
+        {
+            Console.WriteLine("I am Passenger");
+        }
+
+
     }
 }
